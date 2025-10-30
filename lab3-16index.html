@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数字展销平台-秋分</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+        }
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .navbar {
+            background-color: #2c3e50;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .search-bar {
+            flex-grow: 0.3;
+            position: relative;
+        }
+        .search-bar input {
+            width: 100%;
+            padding: 8px 15px;
+            border-radius: 20px;
+            border: none;
+            outline: none;
+            font-size: 0.9rem;
+        }
+        .search-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #666;
+            cursor: pointer;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #3498db;
+        }
+
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        
+        .announcement {
+            background-color: #3498db;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+        }
+        .announcement-icon {
+            font-size: 1.5rem;
+            margin-right: 15px;
+        }
+        .announcement-text {
+            flex-grow: 1;
+        }
+        .announcement-more {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        
+        .section {
+            margin-bottom: 60px;
+        }
+        .section-title {
+            font-size: 1.6rem;
+            margin-bottom: 25px;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+        }
+        .section-title::after {
+            content: "";
+            flex-grow: 1;
+            height: 2px;
+            background-color: #e0e0e0;
+            margin-left: 15px;
+        }
+        .books-container {
+            display: flex;
+            gap: 30px;
+            overflow-x: auto;
+            padding-bottom: 15px;
+        }
+        .book-card {
+            min-width: 220px;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+        .book-card:hover {
+            transform: translateY(-5px);
+        }
+        .book-img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+        }
+        .book-info {
+            padding: 15px;
+        }
+        .book-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+        .book-meta {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        .book-price {
+            color: #e74c3c;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .add-cart {
+            width: 100%;
+            padding: 8px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 0.9rem;
+        }
+        .add-cart:hover {
+            background-color: #2980b9;
+        }
+
+       
+        .reading-events {
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            margin-bottom: 60px;
+        }
+        .event-title {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        .event-list {
+            display: flex;
+            gap: 20px;
+        }
+        .event-item {
+            flex: 1;
+            border: 1px solid #f0f0f0;
+            border-radius: 6px;
+            padding: 15px;
+        }
+        .event-date {
+            color: #3498db;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+        .event-name {
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .event-desc {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        .event-link {
+            color: #3498db;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        
+        .subscribe {
+            background-color: #f0f7ff;
+            padding: 40px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .subscribe-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        .subscribe-desc {
+            color: #666;
+            margin-bottom: 25px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .subscribe-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .subscribe-form input {
+            flex-grow: 1;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px 0 0 4px;
+            outline: none;
+        }
+        .subscribe-btn {
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .subscribe-btn:hover {
+            background-color: #34495e;
+        }
+
+        
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 40px 0;
+            margin-top: 60px;
+        }
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .footer-col {
+            flex: 1;
+        }
+        .footer-col h3 {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        .footer-col ul {
+            list-style: none;
+        }
+        .footer-col li {
+            margin-bottom: 10px;
+        }
+        .footer-col a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .footer-col a:hover {
+            color: white;
+        }
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.6);
+        }
+    </style>
+</head>
+<body>
+  
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">好像来书店</div>
+            <div class="search-bar">
+                <input type="text" placeholder="搜索图书、作者、ISBN...">
+                <button class="search-btn"></button>
+            </div>
+            <div class="nav-links">
+                <a href="#">首页</a>
+                <a href="#">分类浏览</a>
+                <a href="#">优惠活动</a>
+                <a href="#">关于我们</a>
+            </div>
+        </div>
+    </nav>
+        <div class="container">
+        
+        <div class="announcement">
+            <div class="announcement-icon">📢</div>
+            <div class="announcement-text">
+                会员专享活动：本月购买任意图书满200元立减50元，新用户注册即送10元无门槛券
+            </div>
+            <a href="#" class="announcement-more">查看详情 →</a>
+        </div>
+    
+
+
+        
+        <div class="section">
+            <h2 class="section-title">新书推荐</h2>
+            <div class="books-container">
+                <div class="book-card">
+                    <img src="https://bpic.588ku.com/templet_list_pic/25/06/24/7ddc108ba59c7c9a82e3314186de03aa.jpg" class="book-img" alt="长安的荔枝">
+                    <div class="book-info">
+                        <div class="book-title">长安的荔枝</div>
+                        <div class="book-meta">马伯庸 著 | 湖南文艺出版社</div>
+                        <div class="book-price">¥45.00</div>
+                        <button class="add-cart">加入购物车</button>
+                    </div>
+                </div>
+
+                <div class="book-card">
+                    <img src="https://img.alicdn.com/i3/288902762/O1CN01gk9tGF1WH2abIr58Q_!!288902762.jpg" class="book-img" alt="夜晚的潜水艇">
+                    <div class="book-info">
+                        <div class="book-title">夜晚的潜水艇</div>
+                        <div class="book-meta">陈春成 著 | 上海三联书店</div>
+                        <div class="book-price">¥49.00</div>
+                        <button class="add-cart">加入购物车</button>
+                    </div>
+                </div>
+
+                <div class="book-card">
+                    <img src="https://pic1.zhimg.com/v2-8fc9e821555d939320aa7bb19ad464fb_720w.jpg?source=172ae18b" class="book-img" alt="置身事内">
+                    <div class="book-info">
+                        <div class="book-title">置身事内</div>
+                        <div class="book-meta">兰小欢 著 | 上海人民出版社</div>
+                        <div class="book-price">¥59.00</div>
+                        <button class="add-cart">加入购物车</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="section">
+            <h2 class="section-title">畅销精选</h2>
+            <div class="books-container">
+                <div class="book-card">
+                    <img src="https://ts1.tc.mm.bing.net/th/id/R-C.0aa9e68a40597fbf47ed9aaaeb7a374d?rik=gJ871Rvx7S14uA&riu=http%3a%2f%2fpic.baike.soso.com%2fugc%2fbaikepic2%2f1339%2f20160114134110-257691148.jpg%2f0&ehk=cpOFO9WIId2rZ%2fQCy2Y6HtugMu1xM%2fYV%2b7Itq6%2fKz%2bM%3d&risl=&pid=ImgRaw&r=0" class="book-img" alt="三体">
+                    <div class="book-info">
+                        <div class="book-title">三体</div>
+                        <div class="book-meta">刘慈欣 著 | 重庆出版社</div>
+                        <div class="book-price">¥58.00</div>
+                        <button class="add-cart">加入购物车</button>
+                    </div>
+                </div>
+
+                <div class="book-card">
+                    <img src="https://img.alicdn.com/i3/101450072/O1CN01JXSrRS1CP1HcgQpqL-101450072.jpg" class="book-img" alt="百年孤独">
+                    <div class="book-info">
+                        <div class="book-title">百年孤独</div>
+                        <div class="book-meta">[哥伦比亚]加西亚·马尔克斯 著 | 南海出版公司</div>
+                        <div class="book-price">¥55.00</div>
+                        <button class="add-cart">加入购物车</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+
+
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>关于我们</h3>
+                <ul>
+                    <li><a href="#">书房简介</a></li>
+                    <li><a href="#">联系我们</a></li>
+                    <li><a href="#">加入我们</a></li>
+                    <li><a href="#">隐私政策</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>客户服务</h3>
+                <ul>
+                    <li><a href="#">购书指南</a></li>
+                    <li><a href="#">配送方式</a></li>
+                    <li><a href="#">退换政策</a></li>
+                    <li><a href="#">常见问题</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>关注我们</h3>
+                <ul>
+                    <li><a href="#">微信公众号</a></li>
+                    <li><a href="#">微博</a></li>
+                    <li><a href="#">抖音</a></li>
+                    <li><a href="#">小红书</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>联系方式</h3>
+                <ul>
+                    <li>电话：666</li>
+                    <li>邮箱：ludong</li>
+                    <li>地址：北10</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
