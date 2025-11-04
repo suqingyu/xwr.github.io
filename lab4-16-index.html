@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>实验4</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "SimSun", "Microsoft YaHei", sans-serif;
+        }
+        
+        body {
+            background-color: #f5f2eb;
+            color: #444;
+            line-height: 1.7;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        
+        header {
+            background-color: #fff;
+            padding: 20px 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .site-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+            color: #5d4037;
+        }
+        
+        .motto {
+            font-size: 15px;
+            color: #795548;
+            border-left: 1px solid #ddd;
+            padding-left: 12px;
+        }
+        
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 28px;
+            flex-wrap: wrap;
+        }
+        
+        .main-nav a {
+            text-decoration: none;
+            color: #555;
+            font-size: 15px;
+            padding: 5px 0;
+            position: relative;
+        }
+        
+        .main-nav a:hover {
+            color: #5d4037;
+        }
+        
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #8d6e63;
+            transition: width 0.3s;
+        }
+        
+        .main-nav a:hover::after {
+            width: 100%;
+        }
+        
+       
+        .main-container {
+            display: flex;
+            margin: 35px 0;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        
+        .sidebar {
+            flex: 0 0 260px;
+            background-color: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+        }
+        
+        .sidebar-section {
+            padding: 20px;
+            border-bottom: 1px solid #f1ece6;
+        }
+        
+        .sidebar-title {
+            font-size: 18px;
+            color: #5d4037;
+            margin-bottom: 18px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .sidebar-list {
+            list-style: none;
+        }
+        
+        .sidebar-list li {
+            margin-bottom: 10px;
+            padding: 6px 0;
+            transition: all 0.3s;
+        }
+        
+        .sidebar-list li:hover {
+            padding-left: 8px;
+        }
+        
+        .sidebar-list a {
+            text-decoration: none;
+            color: #666;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        
+        .sidebar-list a:hover {
+            color: #5d4037;
+            font-weight: 500;
+        }
+        
+        
+        .content-area {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .section-heading {
+            font-size: 20px;
+            color: #5d4037;
+            margin-bottom: 22px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #d7ccc8;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-heading::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background-color: #8d6e63;
+        }
+        
+        
+        .new-books {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .book-item {
+            background-color: #fff;
+            border-radius: 6px;
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .book-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .book-name {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #333;
+        }
+        
+        .book-meta {
+            font-size: 13px;
+            color: #777;
+            margin-bottom: 12px;
+        }
+        
+        .book-desc {
+            font-size: 14px;
+            color: #666;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+       
+        .reading-guide {
+            background-color: #fff;
+            border-radius: 6px;
+            padding: 25px;
+            margin-bottom: 40px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .guide-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .guide-item h4 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #5d4037;
+        }
+        
+        .guide-item p {
+            font-size: 14px;
+            color: #666;
+        }
+        
+       
+        footer {
+            background-color: #5d4037;
+            color: #e0e0e0;
+            padding: 40px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .footer-column h3 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: #fff;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #795548;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+        
+        .footer-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: #fff;
+        }
+        
+        .copyright {
+            text-align: center;
+            font-size: 13px;
+            padding-top: 20px;
+            border-top: 1px solid #795548;
+        }
+    </style>
+</head>
+<body>
+    
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="site-brand">
+                    <div class="logo">好想来</div>
+                    <div class="motto">以梦为马，砥砺前行</div>
+                </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="#">首页</a></li>
+                        <li><a href="#">图书分类</a></li>
+                        <li><a href="#">新书上架</a></li>
+                        <li><a href="#">畅销榜单</a></li>
+                        <li><a href="#">阅读专栏</a></li>
+                        <li><a href="#">作者访谈</a></li>
+                        <li><a href="#">读书活动</a></li>
+                        <li><a href="#">会员中心</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+   
+    <div class="container">
+        <div class="main-container">
+           
+            <aside class="sidebar">
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">图书分类</h3>
+                    <ul class="sidebar-list">
+                        <li><a href="#">文学小说</a></li>
+                        <li><a href="#">历史传记</a></li>
+                        <li><a href="#">哲学宗教</a></li>
+                        <li><a href="#">社会科学</a></li>
+                        <li><a href="#">自然科学</a></li>
+                        <li><a href="#">艺术设计</a></li>
+                        <li><a href="#">生活休闲</a></li>
+                        <li><a href="#">教育学习</a></li>
+                    </ul>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">热门标签</h3>
+                    <ul class="sidebar-list">
+                        <li><a href="#">经典重读</a></li>
+                        <li><a href="#">年度推荐</a></li>
+                        <li><a href="#">青年必读</a></li>
+                        <li><a href="#">科幻文学</a></li>
+                        <li><a href="#">散文随笔</a></li>
+                        <li><a href="#">商业思维</a></li>
+                    </ul>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">阅读资源</h3>
+                    <ul class="sidebar-list">
+                        <li><a href="#">电子书下载</a></li>
+                        <li><a href="#">有声书推荐</a></li>
+                        <li><a href="#">在线阅读</a></li>
+                        <li><a href="#">图书馆联盟</a></li>
+                    </ul>
+                </div>
+            </aside>
+            
+            
+            <main class="content-area">
+                <h2 class="section-heading">新书上架</h2>
+                <div class="new-books">
+                    <div class="book-item">
+                        <img src="https://picsum.photos/id/24/280/180" alt="人间忽晚，山河已秋" class="book-cover">
+                        <h3 class="book-name">人间忽晚，山河已秋</h3>
+                        <div class="book-meta">作者：林清玄 | 出版社：北京联合出版公司</div>
+                        <p class="book-desc">本书收录林清玄先生经典散文，文字清新隽永，蕴含深刻的人生哲理，带你感受生活中的美好与温暖。</p>
+                    </div>
+                    
+                    <div class="book-item">
+                        <img src="https://picsum.photos/id/25/280/180" alt="时间的秩序" class="book-cover">
+                        <h3 class="book-name">时间的秩序</h3>
+                        <div class="book-meta">作者：卡洛·罗韦利 | 出版社：湖南科学技术出版社</div>
+                        <p class="book-desc">物理学家卡洛·罗韦利以诗意的文字讲述时间的本质，颠覆我们对时间的常识性认知，探索宇宙的奥秘。</p>
+                    </div>
+                    
+                    <div class="book-item">
+                        <img src="https://picsum.photos/id/26/280/180" alt="长安的荔枝" class="book-cover">
+                        <h3 class="book-name">长安的荔枝</h3>
+                        <div class="book-meta">作者：马伯庸 | 出版社：湖南文艺出版社</div>
+                        <p class="book-desc">唐朝小吏李善德为贵妃新鲜荔枝，从岭南到长安，跨越五千里路的传奇故事，展现小人物的智慧与担当。</p>
+                    </div>
+                    
+                    <div class="book-item">
+                        <img src="https://picsum.photos/id/27/280/180" alt="也许你该找个人聊聊" class="book-cover">
+                        <h3 class="book-name">也许你该找个人聊聊</h3>
+                        <div class="book-meta">作者：洛莉·戈特利布 | 出版社：果麦文化</div>
+                        <p class="book-desc">一位心理治疗师的回忆录，讲述她与来访者的故事，也讲述自己作为来访者接受治疗的经历，温暖而治愈。</p>
+                    </div>
+                </div>
+                
+                <h2 class="section-heading">月度阅读推荐</h2>
+                <div class="reading-guide">
+                    <div class="guide-list">
+                        <div class="guide-item">
+                            <h4>文学爱好者推荐</h4>
+                            <p>《百年孤独》《活着》《平凡的世界》《追风筝的人》《月亮与六便士》</p>
+                        </div>
+                        <div class="guide-item">
+                            <h4>自我成长书单</h4>
+                            <p>《被讨厌的勇气》《非暴力沟通》《高效能人士的七个习惯》《终身成长》</p>
+                        </div>
+                        <div class="guide-item">
+                            <h4>历史爱好者必读</h4>
+                            <p>《万历十五年》《明朝那些事儿》《史记》《资治通鉴》《枪炮、病菌与钢铁》</p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>关于我们</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">平台简介</a></li>
+                        <li><a href="#">团队成员</a></li>
+                        <li><a href="#">加入我们</a></li>
+                        <li><a href="#">联系方式</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>帮助中心</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">常见问题</a></li>
+                        <li><a href="#">用户指南</a></li>
+                        <li><a href="#">意见反馈</a></li>
+                        <li><a href="#">投诉建议</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>法律信息</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">用户协议</a></li>
+                        <li><a href="#">隐私政策</a></li>
+                        <li><a href="#">版权声明</a></li>
+                        <li><a href="#">免责条款</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                © 2023 墨香读书 - 与书为伴，不负韶华 | 版权所有
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
