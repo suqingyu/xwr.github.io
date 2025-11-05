@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>数字展销平台-秋分</title>
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -17,7 +21,7 @@
             line-height: 1.6;
         }
         
-        /* 标语样式 */
+        
         .motto-banner {
             background-color: #2c3e50;
             color: white;
@@ -81,7 +85,7 @@
             color: #3498db;
         }
 
-        /* 筛选菜单样式 */
+       
         .filter-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -114,7 +118,7 @@
             color: #666;
             transition: transform 0.3s;
         }
-        /* 下拉菜单打开时箭头旋转 */
+        
         .filter-group.active .filter-label::after {
             transform: rotate(180deg);
         }
@@ -129,12 +133,12 @@
             margin-top: 5px;
             padding: 10px 0;
             z-index: 90;
-            display: none; /* 默认隐藏 */
+            display: none; 
             opacity: 0;
             transform: translateY(10px);
             transition: all 0.3s ease;
         }
-        /* 显示下拉菜单 */
+      
         .filter-group.active .filter-dropdown {
             display: block;
             opacity: 1;
@@ -224,13 +228,12 @@
             overflow: hidden;
             box-shadow: 0 3px 15px rgba(0,0,0,0.08);
             transition: transform 0.3s;
-            position: relative; /* 作为遮罩层的容器 */
+            position: relative;
         }
         .book-card:hover {
             transform: translateY(-5px);
         }
         
-        /* 图片容器和遮罩层 */
         .book-img-container {
             position: relative;
             overflow: hidden;
@@ -245,14 +248,14 @@
             transform: scale(1.05);
         }
         
-        /* 半透明遮罩层和隐藏详情 */
+        
         .book-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.7); /* 半透明遮罩 */
+            background-color: rgba(0,0,0,0.7); 
             opacity: 0;
             transition: opacity 0.3s;
             display: flex;
@@ -296,7 +299,7 @@
             background-color: #2980b9;
         }
 
-        /* 图片预览弹窗 */
+      
         .img-preview {
             position: fixed;
             top: 0;
@@ -495,9 +498,10 @@
     </style>
 </head>
 <body>
-    <!-- 初心至善 匠心育人 标语 -->
+
     <div class="motto-banner">
-        初心至善 匠心育人
+        以梦为马 不负韶华
+        
     </div>
   
     <nav class="navbar">
@@ -505,18 +509,18 @@
             <div class="logo">好像来书店</div>
             <div class="search-bar">
                 <input type="text" placeholder="搜索图书、作者、ISBN...">
-                <button class="search-btn">🔍</button>
+                <button class="search-btn"><i class="fas fa-search"></i></button>
             </div>
             <div class="nav-links">
-                <a href="#">首页</a>
-                <a href="#">分类浏览</a>
-                <a href="#">优惠活动</a>
-                <a href="#">关于我们</a>
+                <a href="#"><i class="fas fa-home"></i> 首页</a>
+                <a href="#"><i class="fas fa-th-large"></i> 分类浏览</a>
+                <a href="#"><i class="fas fa-tag"></i> 优惠活动</a>
+                <a href="#"><i class="fas fa-info-circle"></i> 关于我们</a>
             </div>
         </div>
     </nav>
     
-    <!-- 筛选菜单 -->
+    
     <div class="filter-container">
         <div class="filter-bar">
             <div class="filter-group">
@@ -564,13 +568,13 @@
                 </div>
             </div>
             
-            <button class="filter-apply">应用筛选</button>
+            <button class="filter-apply"><i class="fas fa-check"></i> 应用筛选</button>
         </div>
     </div>
     
     <div class="container">
         <div class="announcement">
-            <div class="announcement-icon">📢</div>
+            <div class="announcement-icon"><i class="fas fa-bullhorn"></i></div>
             <div class="announcement-text">
                 会员专享活动：本月购买任意图书满200元立减50元，新用户注册即送10元无门槛券
             </div>
@@ -584,14 +588,14 @@
                     <div class="book-img-container">
                         <img src="https://bpic.588ku.com/templet_list_pic/25/06/24/7ddc108ba59c7c9a82e3314186de03aa.jpg" class="book-img" alt="长安的荔枝" data-img="https://bpic.588ku.com/templet_list_pic/25/06/24/7ddc108ba59c7c9a82e3314186de03aa.jpg">
                         
-                        <!-- 半透明遮罩层和隐藏详情 -->
+                     
                         <div class="book-overlay">
                             <div class="book-details">
                                 <div class="detail-desc">
                                     大唐天宝十四年，长安城的小吏李善德突然接到一个任务：要在贵妃诞日之前，从岭南运来新鲜荔枝。
                                 </div>
                                 <div class="detail-author">马伯庸 著</div>
-                                <button class="quick-view">快速查看</button>
+                                <button class="quick-view"><i class="fas fa-eye"></i> 快速查看</button>
                             </div>
                         </div>
                     </div>
@@ -599,7 +603,7 @@
                         <div class="book-title">长安的荔枝</div>
                         <div class="book-meta">马伯庸 著 | 湖南文艺出版社</div>
                         <div class="book-price">¥45.00</div>
-                        <button class="add-cart">加入购物车</button>
+                        <button class="add-cart"><i class="fas fa-shopping-cart"></i> 加入购物车</button>
                     </div>
                 </div>
 
@@ -613,7 +617,7 @@
                                     陈春成的首部短篇小说集，十篇故事，笔锋游走于旧山河与未知宇宙间，在现实与幻境间辟开秘密通道。
                                 </div>
                                 <div class="detail-author">陈春成 著</div>
-                                <button class="quick-view">快速查看</button>
+                                <button class="quick-view"><i class="fas fa-eye"></i> 快速查看</button>
                             </div>
                         </div>
                     </div>
@@ -621,7 +625,7 @@
                         <div class="book-title">夜晚的潜水艇</div>
                         <div class="book-meta">陈春成 著 | 上海三联书店</div>
                         <div class="book-price">¥49.00</div>
-                        <button class="add-cart">加入购物车</button>
+                        <button class="add-cart"><i class="fas fa-shopping-cart"></i> 加入购物车</button>
                     </div>
                 </div>
 
@@ -635,7 +639,7 @@
                                     以地方政府投融资为主线，深入浅出地解释了中国经济的发展模式和未来改革方向。
                                 </div>
                                 <div class="detail-author">兰小欢 著</div>
-                                <button class="quick-view">快速查看</button>
+                                <button class="quick-view"><i class="fas fa-eye"></i> 快速查看</button>
                             </div>
                         </div>
                     </div>
@@ -643,7 +647,7 @@
                         <div class="book-title">置身事内</div>
                         <div class="book-meta">兰小欢 著 | 上海人民出版社</div>
                         <div class="book-price">¥59.00</div>
-                        <button class="add-cart">加入购物车</button>
+                        <button class="add-cart"><i class="fas fa-shopping-cart"></i> 加入购物车</button>
                     </div>
                 </div>
             </div>
@@ -663,7 +667,7 @@
                                     地球文明向宇宙发出了神秘信号，由此引发了一场横跨四光年的星际战争和文明兴衰。
                                 </div>
                                 <div class="detail-author">刘慈欣 著</div>
-                                <button class="quick-view">快速查看</button>
+                                <button class="quick-view"><i class="fas fa-eye"></i> 快速查看</button>
                             </div>
                         </div>
                     </div>
@@ -671,7 +675,7 @@
                         <div class="book-title">三体</div>
                         <div class="book-meta">刘慈欣 著 | 重庆出版社</div>
                         <div class="book-price">¥58.00</div>
-                        <button class="add-cart">加入购物车</button>
+                        <button class="add-cart"><i class="fas fa-shopping-cart"></i> 加入购物车</button>
                     </div>
                 </div>
 
@@ -685,7 +689,7 @@
                                     讲述了布恩迪亚家族七代人的传奇故事，反映了拉丁美洲一个世纪以来风云变幻的历史。
                                 </div>
                                 <div class="detail-author">[哥伦比亚]加西亚·马尔克斯 著</div>
-                                <button class="quick-view">快速查看</button>
+                                <button class="quick-view"><i class="fas fa-eye"></i> 快速查看</button>
                             </div>
                         </div>
                     </div>
@@ -693,16 +697,16 @@
                         <div class="book-title">百年孤独</div>
                         <div class="book-meta">[哥伦比亚]加西亚·马尔克斯 著 | 南海出版公司</div>
                         <div class="book-price">¥55.00</div>
-                        <button class="add-cart">加入购物车</button>
+                        <button class="add-cart"><i class="fas fa-shopping-cart"></i> 加入购物车</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     
-    <!-- 图片预览弹窗 -->
+  
     <div class="img-preview" id="imgPreview">
-        <button class="close-preview" id="closePreview">×</button>
+        <button class="close-preview" id="closePreview"><i class="fas fa-times"></i></button>
         <img src="" class="preview-img" id="previewImg">
     </div>
 
@@ -711,36 +715,36 @@
             <div class="footer-col">
                 <h3>关于我们</h3>
                 <ul>
-                    <li><a href="#">书房简介</a></li>
-                    <li><a href="#">联系我们</a></li>
-                    <li><a href="#">加入我们</a></li>
-                    <li><a href="#">隐私政策</a></li>
+                    <li><a href="#"><i class="fas fa-angle-right"></i> 书房简介</a></li>
+                    <li><a href="#"><i class="fas fa-angle-right"></i> 联系我们</a></li>
+                    <li><a href="#"><i class="fas fa-angle-right"></i> 加入我们</a></li>
+                    <li><a href="#"><i class="fas fa-angle-right"></i> 隐私政策</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h3>客户服务</h3>
                 <ul>
-                    <li><a href="#">购书指南</a></li>
-                    <li><a href="#">配送方式</a></li>
-                    <li><a href="#">退换政策</a></li>
-                    <li><a href="#">常见问题</a></li>
+                    <li><a href="#"><i class="fas fa-angle-right"></i> 购书指南</a></li>
+                    <li><a href="#"><i class="fas fa-angle-right"></i> 配送方式</a></li>
+                    <li><a href="#"><i class="fas fa-angle-right"></i> 退换政策</a></li>
+                    <li><a href="#"><i class="fas fa-angle-right"></i> 常见问题</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h3>关注我们</h3>
                 <ul>
-                    <li><a href="#">微信公众号</a></li>
-                    <li><a href="#">微博</a></li>
-                    <li><a href="#">抖音</a></li>
-                    <li><a href="#">小红书</a></li>
+                    <li><a href="#"><i class="fab fa-weixin"></i> 微信公众号</a></li>
+                    <li><a href="#"><i class="fab fa-weibo"></i> 微博</a></li>
+                    <li><a href="#"><i class="fab fa-tiktok"></i> 抖音</a></li>
+                    <li><a href="#"><i class="fas fa-book"></i> 小红书</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h3>联系方式</h3>
                 <ul>
-                    <li>电话：666</li>
-                    <li>邮箱：ludong</li>
-                    <li>地址：北10</li>
+                    <li><i class="fas fa-phone"></i> 电话：666</li>
+                    <li><i class="fas fa-envelope"></i> 邮箱：ludong</li>
+                    <li><i class="fas fa-map-marker-alt"></i> 地址：北10</li>
                 </ul>
             </div>
         </div>
@@ -750,84 +754,61 @@
     </footer>
 
     <script>
-        // 1. 下拉菜单的显示隐藏控制
-        const filterLabels = document.querySelectorAll('.filter-label');
-        filterLabels.forEach(label => {
-            label.addEventListener('click', (e) => {
-                e.stopPropagation(); // 阻止事件冒泡
-                const filterGroup = label.closest('.filter-group');
-                
-                // 关闭其他所有下拉菜单
-                document.querySelectorAll('.filter-group').forEach(group => {
-                    if (group !== filterGroup) {
-                        group.classList.remove('active');
-                    }
-                });
-                
-                // 切换当前下拉菜单状态
-                filterGroup.classList.toggle('active');
-            });
-        });
         
-        // 点击页面其他区域关闭下拉菜单
-        document.addEventListener('click', () => {
-            document.querySelectorAll('.filter-group').forEach(group => {
-                group.classList.remove('active');
-            });
-        });
-
-        // 2. 图片放大预览功能
-        const bookImgs = document.querySelectorAll('.book-img');
-        const imgPreview = document.getElementById('imgPreview');
-        const previewImg = document.getElementById('previewImg');
-        const closePreview = document.getElementById('closePreview');
-        const quickViewBtns = document.querySelectorAll('.quick-view');
-
-        // 点击图片显示预览
-        bookImgs.forEach(img => {
-            img.addEventListener('click', () => {
-                const imgSrc = img.getAttribute('data-img');
-                previewImg.src = imgSrc;
-                imgPreview.style.display = 'flex';
-                document.body.style.overflow = 'hidden'; // 防止背景滚动
-            });
-        });
-
-        // 点击快速查看按钮显示预览
-        quickViewBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.stopPropagation(); // 防止触发卡片的其他事件
-                const imgSrc = btn.closest('.book-card').querySelector('.book-img').getAttribute('data-img');
-                previewImg.src = imgSrc;
-                imgPreview.style.display = 'flex';
-                document.body.style.overflow = 'hidden';
-            });
-        });
-
-        // 关闭预览
-        closePreview.addEventListener('click', () => {
-            imgPreview.style.display = 'none';
-            document.body.style.overflow = 'auto'; // 恢复滚动
-        });
-
-        // 点击预览背景关闭
-        imgPreview.addEventListener('click', (e) => {
-            if (e.target === imgPreview) {
-                imgPreview.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-        });
-
-        // 3. 筛选选项点击事件
-        const filterOptions = document.querySelectorAll('.filter-option');
-        filterOptions.forEach(option => {
-            option.addEventListener('click', (e) => {
+        $(document).ready(function() {
+          
+            $('.filter-label').click(function(e) {
                 e.stopPropagation();
-                // 更新筛选标签文本
-                const filterLabel = option.closest('.filter-group').querySelector('.filter-label');
-                filterLabel.textContent = option.textContent;
-                // 关闭下拉菜单
-                option.closest('.filter-group').classList.remove('active');
+                const $filterGroup = $(this).closest('.filter-group');
+                
+                $('.filter-group').not($filterGroup).removeClass('active');
+                $filterGroup.toggleClass('active');
+            });
+            
+            
+            $(document).click(function() {
+                $('.filter-group').removeClass('active');
+            });
+
+           
+            $('.filter-option').click(function(e) {
+                e.stopPropagation();
+                const $filterLabel = $(this).closest('.filter-group').find('.filter-label');
+                $filterLabel.text($(this).text());
+                $(this).closest('.filter-group').removeClass('active');
+            });
+
+           
+            const $imgPreview = $('#imgPreview');
+            const $previewImg = $('#previewImg');
+            
+            $('.book-img, .quick-view').click(function(e) {
+                e.stopPropagation();
+                const imgSrc = $(this).closest('.book-card').find('.book-img').data('img');
+                $previewImg.attr('src', imgSrc);
+                $imgPreview.show().css('display', 'flex');
+                $('body').css('overflow', 'hidden');
+            });
+            
+            $('#closePreview, #imgPreview').click(function(e) {
+                if (e.target === this) {
+                    $imgPreview.hide();
+                    $('body').css('overflow', 'auto');
+                }
+            });
+
+           
+            $('.add-cart').click(function() {
+                const $btn = $(this);
+                const originalText = $btn.html();
+                
+                $btn.html('<i class="fas fa-check"></i> 已加入');
+                $btn.css('background-color', '#27ae60');
+                
+                setTimeout(() => {
+                    $btn.html(originalText);
+                    $btn.css('background-color', '');
+                }, 1500);
             });
         });
     </script>
