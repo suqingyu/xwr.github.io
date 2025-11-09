@@ -3,12 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>数字展销平台-秋分</title>
+    <title>实验4</title>
    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        button {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        button:active {
+            transform: scale(0.95);
+        }
+
+
+        .navbar.scroll {
+            background-color: rgba(44, 62, 80, 0.95);
+            padding: 12px 0;
+        }
+
+
+        .book-tag {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: white;
+            z-index: 10;
+        }
+        .tag-new {
+            background-color: #e74c3c;
+        }
+        .tag-hot {
+            background-color: #f39c12;
+        }
+
+
+        .search-bar input:focus {
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+
+
+        @media (max-width: 992px) {
+        .nav-container {
+            flex-wrap: wrap;
+            gap:15px;
+        }
+        .search-bar {
+            flex-grow: 1;
+            order: 3;
+        }
+        .filter-bar {
+            flex-wrap: wrap;
+        }
+        .filter-apply {
+            margin-left: 0;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .event-list {
+            flex-direction: column;
+        }
+        }
+
+
+        @media (max-width: 576px) {
+        .motto-banner {
+            font-size: 1rem;
+            padding: 8px 0;
+        }
+        .logo {
+            font-size: 1.3rem;
+        }
+        .nav-links a {
+            margin-left: 15px;
+            font-size: 0.85rem;
+        }
+        .section-title {
+            font-size: 1.4rem;
+        }
+        .book-card {
+            min-width: 180px;
+        }
+        .book-img {
+            height: 220px;
+        }
+        .footer-container {
+            flex-direction: column;
+            gap: 25px;
+        }
+        .subscribe-form {
+            flex-direction: column;
+            gap: 10px;
+        }
+        .subscribe-btn {
+            border-radius: 4px;
+            padding: 12px 20px;
+        }
+        }
+
+        .book-details {
+            padding: 15px;
+        }
+        .detail-desc {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+
+        .announcement {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+        }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+        }
+        }
+
+
+        @keyframes pulse {
+            0% {
+                opacity: 1;
+        }
+            50% {
+                opacity: 0.6;
+        }
+            100% {
+                opacity: 1;
+        }
+        }
+        .loading {
+            animation: pulse 1.5s infinite;
+        }
+
+
+        .footer-col li i {
+            margin-right: 8px;
+            width: 16px;
+            text-align: center;
+        }
+
+
+            .filter-option.active {
+            background-color: #e3f2fd;
+            color: #3498db;
+            font-weight: 500;
+        } 
         * {
             margin: 0;
             padding: 0;
@@ -506,7 +661,7 @@
   
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">好像来书店</div>
+            <div class="logo">好想来书店</div>
             <div class="search-bar">
                 <input type="text" placeholder="搜索图书、作者、ISBN...">
                 <button class="search-btn"><i class="fas fa-search"></i></button>
