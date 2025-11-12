@@ -1,0 +1,1584 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>好想来书店</title>
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+            padding-top: 60px;
+        }
+
+     
+        .top-nav {
+            background-color: #2c3e50;
+            color: white;
+            height: 60px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-right: 30px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .search-container {
+            flex-grow: 1;
+            max-width: 600px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 8px 15px 8px 40px;
+            border-radius: 20px;
+            border: none;
+            outline: none;
+            font-size: 0.9rem;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+        }
+
+        .user-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .user-actions a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .user-actions a:hover {
+            color: #3498db;
+        }
+
+        .auth-link {
+            border: 1px solid #3498db;
+            padding: 5px 15px;
+            border-radius: 20px;
+        }
+
+        .auth-link:hover {
+            background-color: #3498db;
+            color: white !important;
+        }
+
+      
+        .main-container {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            gap: 20px;
+        }
+
+       
+        .sidebar {
+            width: 240px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 20px 0;
+            flex-shrink: 0;
+        }
+
+        .sidebar-title {
+            padding: 0 20px 10px;
+            font-size: 1.1rem;
+            color: #2c3e50;
+            border-bottom: 1px solid #f0f0f0;
+            margin-bottom: 15px;
+        }
+
+        .category-list {
+            list-style: none;
+        }
+
+        .category-item {
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .category-item:hover {
+            background-color: #f0f7ff;
+            color: #3498db;
+        }
+
+        .category-item.active {
+            background-color: #e3f2fd;
+            color: #3498db;
+            font-weight: 500;
+        }
+
+        .category-count {
+            background-color: #f0f0f0;
+            color: #666;
+            font-size: 0.8rem;
+            padding: 2px 8px;
+            border-radius: 10px;
+        }
+
+        
+        .content-area {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .filter-bar {
+            background-color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .filter-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .filter-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .filter-select {
+            padding: 5px 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            outline: none;
+            font-size: 0.9rem;
+        }
+
+        .filter-actions {
+            margin-left: auto;
+            display: flex;
+            gap: 10px;
+        }
+
+        .filter-btn {
+            padding: 6px 15px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .filter-btn:hover {
+            background-color: #2980b9;
+        }
+
+        .filter-btn.reset {
+            background-color: #f0f0f0;
+            color: #666;
+        }
+
+        .filter-btn.reset:hover {
+            background-color: #e0e0e0;
+        }
+
+        .section {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 20px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            color: #2c3e50;
+        }
+
+        .section-more {
+            color: #3498db;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .book-card {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+            position: relative;
+        }
+
+        .book-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .book-img-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .book-img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .book-card:hover .book-img {
+            transform: scale(1.05);
+        }
+
+        .book-tag {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            color: white;
+            z-index: 10;
+        }
+
+        .tag-new {
+            background-color: #e74c3c;
+        }
+
+        .tag-hot {
+            background-color: #f39c12;
+        }
+
+        .book-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7); 
+            opacity: 0;
+            transition: opacity 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .book-details {
+            color: white;
+            padding: 15px;
+            text-align: center;
+            transform: translateY(20px);
+            transition: transform 0.3s;
+        }
+
+        .book-card:hover .book-overlay {
+            opacity: 1;
+        }
+
+        .book-card:hover .book-details {
+            transform: translateY(0);
+        }
+
+        .detail-desc {
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .detail-author {
+            font-size: 0.8rem;
+            margin-bottom: 8px;
+            color: #ddd;
+        }
+
+        .quick-view {
+            padding: 5px 12px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: background-color 0.3s;
+        }
+
+        .quick-view:hover {
+            background-color: #2980b9;
+        }
+
+        .book-info {
+            padding: 15px;
+        }
+
+        .book-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #2c3e50;
+            font-size: 0.95rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .book-meta {
+            font-size: 0.8rem;
+            color: #666;
+            margin-bottom: 8px;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .book-price {
+            color: #e74c3c;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .add-cart {
+            width: 100%;
+            padding: 6px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .add-cart:hover {
+            background-color: #2980b9;
+        }
+
+      
+        .right-sidebar {
+            width: 280px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            flex-shrink: 0;
+        }
+
+        .sidebar-widget {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 20px;
+        }
+
+        .widget-title {
+            font-size: 1.1rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .hot-book {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+
+        .hot-book:last-child {
+            margin-bottom: 0;
+        }
+
+        .hot-rank {
+            width: 24px;
+            height: 24px;
+            background-color: #f0f0f0;
+            color: #666;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .hot-rank.top3 {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        .hot-book-img {
+            width: 50px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .hot-book-info {
+            flex-grow: 1;
+        }
+
+        .hot-book-title {
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 3px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .hot-book-author {
+            font-size: 0.75rem;
+            color: #666;
+            margin-bottom: 3px;
+        }
+
+        .hot-book-price {
+            font-size: 0.8rem;
+            color: #e74c3c;
+        }
+
+        .announcement {
+            background-color: #3498db;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 0;
+        }
+
+        .announcement-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .announcement-content {
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+      
+        .subscribe {
+            background-color: #f0f7ff;
+            padding: 25px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .subscribe-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .subscribe-desc {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .subscribe-form {
+            display: flex;
+            gap: 10px;
+        }
+
+        .subscribe-form input {
+            flex-grow: 1;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            outline: none;
+            font-size: 0.9rem;
+        }
+
+        .subscribe-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 0 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .subscribe-btn:hover {
+            background-color: #2980b9;
+        }
+
+       
+        .subscription-box {
+            background-color: #f9f9f9;
+            border-radius: 6px;
+            padding: 15px;
+        }
+
+        .subscription-desc {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .interest-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .interest-tags label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+
+        .interest-tags input {
+            width: 14px;
+            height: 14px;
+            accent-color: #3498db;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 40px;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .footer-col {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-col h3 {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #3498db;
+            display: inline-block;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 8px;
+        }
+
+        .footer-col a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .footer-col a:hover {
+            color: white;
+            padding-left: 3px;
+        }
+
+        .footer-col li i {
+            margin-right: 8px;
+            width: 16px;
+            text-align: center;
+            color: #3498db;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            margin-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.6);
+        }
+
+        
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background-color: white;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        .modal-header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px 20px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .modal-body {
+            padding: 25px 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .remember-me input {
+            margin-right: 8px;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 12px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-bottom: 15px;
+        }
+
+        .btn-login:hover {
+            background-color: #2980b9;
+        }
+
+        .register-link {
+            text-align: center;
+            color: #666;
+        }
+
+        .register-link a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+
+      
+        .img-preview {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 40px;
+        }
+
+        .preview-img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border: 5px solid white;
+            border-radius: 4px;
+        }
+
+        .close-preview {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 2rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+      
+        @media (max-width: 1200px) {
+            .right-sidebar {
+                width: 240px;
+            }
+            
+            .books-grid {
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            }
+        }
+
+        @media (max-width: 992px) {
+            .main-container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                padding: 15px 0;
+            }
+            
+            .category-list {
+                display: flex;
+                overflow-x: auto;
+                padding: 5px 0;
+            }
+            
+            .category-item {
+                flex-shrink: 0;
+                padding: 8px 15px;
+                margin: 0 5px;
+                border-radius: 15px;
+            }
+            
+            .right-sidebar {
+                width: 100%;
+                flex-direction: row;
+                overflow-x: auto;
+                padding-bottom: 10px;
+            }
+            
+            .sidebar-widget {
+                min-width: 280px;
+            }
+            
+            .books-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .search-container {
+                max-width: none;
+                margin: 0 10px;
+            }
+            
+            .user-actions span {
+                display: none;
+            }
+            
+            .user-actions {
+                gap: 15px;
+            }
+            
+            .filter-actions {
+                margin-left: 0;
+                width: 100%;
+                margin-top: 10px;
+            }
+            
+            .filter-btn {
+                flex-grow: 1;
+            }
+            
+            .books-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            }
+            
+            .book-img {
+                height: 220px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .logo {
+                font-size: 1.2rem;
+                margin-right: 10px;
+            }
+            
+            .books-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            }
+            
+            .book-title, .book-price {
+                font-size: 0.9rem;
+            }
+            
+            .section-title {
+                font-size: 1.1rem;
+            }
+            
+            .footer-col {
+                min-width: 100%;
+            }
+        }
+
+       
+        .announcement {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        button {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+<body>
+   
+    <nav class="top-nav">
+        <a href="#" class="logo">好想来书店</a>
+        <div class="search-container">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" class="search-input" placeholder="搜索图书、作者、ISBN...">
+        </div>
+        <div class="user-actions">
+            <a href="#"><i class="fas fa-home"></i> <span>首页</span></a>
+            <a href="#"><i class="fas fa-tag"></i> <span>优惠</span></a>
+            <a href="#"><i class="fas fa-shopping-cart"></i> <span>购物车</span></a>
+            <a href="#" class="auth-link" id="loginLink"><i class="fas fa-user"></i> <span>登录/注册</span></a>
+        </div>
+    </nav>
+    
+   
+    <div class="main-container">
+       
+        <aside class="sidebar">
+            <h3 class="sidebar-title">图书分类</h3>
+            <ul class="category-list">
+                <li class="category-item active">
+                    全部图书 <span class="category-count">256</span>
+                </li>
+                <li class="category-item">
+                    文学小说 <span class="category-count">87</span>
+                </li>
+                <li class="category-item">
+                    历史传记 <span class="category-count">42</span>
+                </li>
+                <li class="category-item">
+                    社会科学 <span class="category-count">36</span>
+                </li>
+                <li class="category-item">
+                    自然科学 <span class="category-count">29</span>
+                </li>
+                <li class="category-item">
+                    哲学宗教 <span class="category-count">18</span>
+                </li>
+                <li class="category-item">
+                    艺术设计 <span class="category-count">21</span>
+                </li>
+                <li class="category-item">
+                    科幻奇幻 <span class="category-count">15</span>
+                </li>
+            </ul>
+        </aside>
+        
+        
+        <main class="content-area">
+           
+            <div class="filter-bar">
+                <div class="filter-item">
+                    <span class="filter-label">价格范围:</span>
+                    <select class="filter-select">
+                        <option value="">全部价格</option>
+                        <option value="0-30">¥0 - ¥30</option>
+                        <option value="30-50">¥30 - ¥50</option>
+                        <option value="50-100">¥50 - ¥100</option>
+                        <option value="100+">¥100以上</option>
+                    </select>
+                </div>
+                <div class="filter-item">
+                    <span class="filter-label">出版时间:</span>
+                    <select class="filter-select">
+                        <option value="">全部时间</option>
+                        <option value="30">近30天</option>
+                        <option value="90">近90天</option>
+                        <option value="365">近1年</option>
+                    </select>
+                </div>
+                <div class="filter-item">
+                    <span class="filter-label">排序方式:</span>
+                    <select class="filter-select">
+                        <option value="recommend">推荐排序</option>
+                        <option value="price-asc">价格从低到高</option>
+                        <option value="price-desc">价格从高到低</option>
+                        <option value="newest">最新上架</option>
+                        <option value="sales">销量优先</option>
+                    </select>
+                </div>
+                <div class="filter-actions">
+                    <button class="filter-btn reset">重置</button>
+                    <button class="filter-btn">应用筛选</button>
+                </div>
+            </div>
+            
+           
+            <section class="section">
+                <div class="section-header">
+                    <h2 class="section-title">新书推荐</h2>
+                    <a href="#" class="section-more">查看更多 →</a>
+                </div>
+                <div class="books-grid">
+                    <div class="book-card">
+                        <div class="book-img-container">
+                            <span class="book-tag tag-new">新书</span>
+                            <img src="https://bpic.588ku.com/templet_list_pic/25/06/24/7ddc108ba59c7c9a82e3314186de03aa.jpg" class="book-img" alt="长安的荔枝" data-img="https://bpic.588ku.com/templet_list_pic/25/06/24/7ddc108ba59c7c9a82e3314186de03aa.jpg">
+                            
+                            <div class="book-overlay">
+                                <div class="book-details">
+                                    <div class="detail-desc">
+                                        大唐天宝十四年，长安城的小吏李善德突然接到一个任务：要在贵妃诞日之前，从岭南运来新鲜荔枝。
+                                    </div>
+                                    <div class="detail-author">马伯庸 著</div>
+                                    <button class="quick-view"><i class="fas fa-eye"></i> 快速查看</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="book-info">
+                            <div class="book-title">长安的荔枝</div>
+                            <div class="book-meta">马伯庸 著 | 湖南文艺出版社</div>
+                            <div class="book-price">¥45.00</div>
+                            <button class="add-cart"><i class="fas fa-shopping-cart"></i> 加入购物车</button>
+                        </div>
+                    </div>
+
+                    <div class="book-card">
+                        <div class="book-img-container">
+                            <span class="book-tag tag-new">新书</span>
+                            <img src="https://img.alicdn.com/i3/288902762/O1CN01gk9tGF1WH2abIr58Q_!!288902762.jpg" class="book-img" alt="夜晚的潜水艇" data-img="https://img.alicdn.com/i3/288902762/O1CN01gk9tGF1WH2abIr58Q_!!288902762.jpg">
+                            
+                            <div class="book-overlay">
+                                <div class="book-details">
+                                    <div class="detail-desc">
+                                        陈春成的首部短篇小说集，十篇故事，笔锋游走于旧山河与未知宇宙间。
+                                    </div>
+                                    <div class="detail-author">陈春成 著</div>
+                                    <button class="quick-view"><i class="fas fa-eye"></i> 快速查看</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="book-info">
+                            <div class="book-title">夜晚的潜水艇</div>
+                            <div class="book-meta">陈春成 著 | 上海三联书店</div>
+                            <div class="book-price">¥49.00</div>
+                            <button class="add-cart"><i class="fas fa-shopping-cart"></i> 加入购物车</button>
+                        </div>
+                    </div>
+
+                    <div class="book-card">
+                        <div class="book-img-container">
+                            <span class="book-tag tag-new">新书</span>
+                            <img src="https://pic1.zhimg.com/v2-8fc9e821555d939320aa7bb19ad464fb_720w.jpg?source=172ae18b" class="book-img" alt="置身事内" data-img="https://pic1.zhimg.com/v2-8fc9e821555d939320aa7bb19ad464fb_720w.jpg?source=172ae18b">
+                            
+                            <div class="book-overlay">
+                                <div class="book-details">
+                                    <div class="detail-desc">
+                                        以地方政府投融资为主线，深入浅出地解释了中国经济的发展模式。
+                                    </div>
+                                    <div class="detail-author">兰小欢 著</div>
+                                    <button class="quick-view"><i class="fas fa-eye"></i> 快速查看</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="book-info">
+                            <div class="book-title">置身事内</div>
+                            <div class="book-meta">兰小欢 著 | 上海人民出版社</div>
+                            <div class="book-price">¥59.00</div>
+                            <button class="add-cart"><i class="fas fa-shopping-cart"></i> 加入购物车</button>
+                        </div>
+                    </div>
+
+                   
+            </section>
+            
+          
+            <section class="section">
+                <div class="section-header">
+                    <h2 class="section-title">畅销精选</h2>
+                    <a href="#" class="section-more">查看更多 →</a>
+                </div>
+                <div class="books-grid">
+                    <div class="book-card">
+                        <div class="book-img-container">
+                            <span class="book-tag tag-hot">畅销</span>
+                            <img src="https://ts1.tc.mm.bing.net/th/id/R-C.0aa9e68a40597fbf47ed9aaaeb7a374d?rik=gJ871Rvx7S14uA&riu=http%3a%2f%2fpic.baike.soso.com%2fugc%2fbaikepic2%2f1339%2f20160114134110-257691148.jpg%2f0&ehk=cpOFO9WIId2rZ%2fQCy2Y6HtugMu1xM%2fYV%2b7Itq6%2fKz%2bM%3d&risl=&pid=ImgRaw&r=0" class="book-img" alt="三体" data-img="https://ts1.tc.mm.bing.net/th/id/R-C.0aa9e68a40597fbf47ed9aaaeb7a374d?rik=gJ871Rvx7S14uA&riu=http%3a%2f%2fpic.baike.soso.com%2fugc%2fbaikepic2%2f1339%2f20160114134110-257691148.jpg%2f0&ehk=cpOFO9WIId2rZ%2fQCy2Y6HtugMu1xM%2fYV%2b7Itq6%2fKz%2bM%3d&risl=&pid=ImgRaw&r=0">
+                            
+                            <div class="book-overlay">
+                                <div class="book-details">
+                                    <div class="detail-desc">
+                                        地球文明向宇宙发出了神秘信号，由此引发了一场横跨四光年的星际战争。
+                                    </div>
+                                    <div class="detail-author">刘慈欣 著</div>
+                                    <button class="quick-view"><i class="fas fa-eye"></i> 快速查看</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="book-info">
+                            <div class="book-title">三体</div>
+                            <div class="book-meta">刘慈欣 著 | 重庆出版社</div>
+                            <div class="book-price">¥58.00</div>
+                            <button class="add-cart"><i class="fas fa-shopping-cart"></i> 加入购物车</button>
+                        </div>
+                    </div>
+
+                    <div class="book-card">
+                        <div class="book-img-container">
+                            <span class="book-tag tag-hot">畅销</span>
+                            <img src="https://img.alicdn.com/i3/101450072/O1CN01JXSrRS1CP1HcgQpqL-101450072.jpg" class="book-img" alt="百年孤独" data-img="https://img.alicdn.com/i3/101450072/O1CN01JXSrRS1CP1HcgQpqL-101450072.jpg">
+                            
+                            <div class="book-overlay">
+                                <div class="book-details">
+                                    <div class="detail-desc">
+                                        讲述了布恩迪亚家族七代人的传奇故事，反映了拉丁美洲一个世纪的风云变幻。
+                                    </div>
+                                    <div class="detail-author">[哥伦比亚]加西亚·马尔克斯</div>
+                                    <button class="quick-view"><i class="fas fa-eye"></i> 快速查看</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="book-info">
+                            <div class="book-title">百年孤独</div>
+                            <div class="book-meta">加西亚·马尔克斯 | 南海出版公司</div>
+                            <div class="book-price">¥55.00</div>
+                            <button class="add-cart"><i class="fas fa-shopping-cart"></i> 加入购物车</button>
+                        </div>
+                    </div>
+
+                    <div class="book-card">
+                        <div class="book-img-container">
+                            <span class="book-tag tag-hot">畅销</span>
+                            <img src="https://img14.360buyimg.com/pop/jfs/t1/202390/35/17788/414539/61b1d057E5f58c1db/ed08fade1834dffd.png" class="book-img" alt="活着" data-img="https://img2.doubanio.com/view/subject/s/public/s29437474.jpg">
+                            
+                            <div class="book-overlay">
+                                <div class="book-details">
+                                    <div class="detail-desc">
+                                        讲述了中国农村一个普通人福贵的一生，展现了生命的顽强与坚韧。
+                                    </div>
+                                    <div class="detail-author">余华 著</div>
+                                    <button class="quick-view"><i class="fas fa-eye"></i> 快速查看</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="book-info">
+                            <div class="book-title">活着</div>
+                            <div class="book-meta">余华 著 | 作家出版社</div>
+                            <div class="book-price">¥33.00</div>
+                            <button class="add-cart"><i class="fas fa-shopping-cart"></i> 加入购物车</button>
+                        </div>
+                    </div>
+
+                    
+            </section>
+        </main>
+        
+        
+        <aside class="right-sidebar">
+          
+            <div class="sidebar-widget announcement">
+                <h3 class="announcement-title"><i class="fas fa-bullhorn"></i> 会员专享</h3>
+                <div class="announcement-content">
+                    本月购买任意图书满200元立减50元，新用户注册即送10元无门槛券，更有精选图书限时7折优惠！
+                </div>
+            </div>
+            
+       
+            <div class="sidebar-widget">
+                <h3 class="widget-title">热门排行</h3>
+                <div class="hot-books-list">
+                    <div class="hot-book">
+                        <div class="hot-rank top3">1</div>
+                        <img src="https://ts1.tc.mm.bing.net/th/id/R-C.0aa9e68a40597fbf47ed9aaaeb7a374d?rik=gJ871Rvx7S14uA&riu=http%3a%2f%2fpic.baike.soso.com%2fugc%2fbaikepic2%2f1339%2f20160114134110-257691148.jpg%2f0&ehk=cpOFO9WIId2rZ%2fQCy2Y6HtugMu1xM%2fYV%2b7Itq6%2fKz%2bM%3d&risl=&pid=ImgRaw&r=0" class="hot-book-img" alt="三体">
+                        <div class="hot-book-info">
+                            <div class="hot-book-title">三体</div>
+                            <div class="hot-book-author">刘慈欣 著</div>
+                            <div class="hot-book-price">¥58.00</div>
+                        </div>
+                    </div>
+                    <div class="hot-book">
+                        <div class="hot-rank top3">2</div>
+                        <img src="https://img.alicdn.com/i3/101450072/O1CN01JXSrRS1CP1HcgQpqL-101450072.jpg" class="hot-book-img" alt="百年孤独">
+                        <div class="hot-book-info">
+                            <div class="hot-book-title">百年孤独</div>
+                            <div class="hot-book-author">加西亚·马尔克斯</div>
+                            <div class="hot-book-price">¥55.00</div>
+                        </div>
+                    </div>
+                    <div class="hot-book">
+                        <div class="hot-rank top3">3</div>
+                        <img src="https://bpic.588ku.com/templet_list_pic/25/06/24/7ddc108ba59c7c9a82e3314186de03aa.jpg" class="hot-book-img" alt="长安的荔枝">
+                        <div class="hot-book-info">
+                            <div class="hot-book-title">长安的荔枝</div>
+                            <div class="hot-book-author">马伯庸 著</div>
+                            <div class="hot-book-price">¥45.00</div>
+                        </div>
+                    </div>
+                    <div class="hot-book">
+                        <div class="hot-rank">4</div>
+                        <img src="https://img14.360buyimg.com/pop/jfs/t1/202390/35/17788/414539/61b1d057E5f58c1db/ed08fade1834dffd.png" class="hot-book-img" alt="活着">
+                        <div class="hot-book-info">
+                            <div class="hot-book-title">活着</div>
+                            <div class="hot-book-author">余华 著</div>
+                            <div class="hot-book-price">¥33.00</div>
+                        </div>
+                    </div>
+                    <div class="hot-book">
+                        <div class="hot-rank">5</div>
+                        <img src="https://img.alicdn.com/i3/288902762/O1CN01gk9tGF1WH2abIr58Q_!!288902762.jpg" class="hot-book-img" alt="夜晚的潜水艇">
+                        <div class="hot-book-info">
+                            <div class="hot-book-title">夜晚的潜水艇</div>
+                            <div class="hot-book-author">陈春成 著</div>
+                            <div class="hot-book-price">¥49.00</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+         
+            <div class="sidebar-widget">
+                <h3 class="widget-title">图书推荐订阅</h3>
+                <div class="subscription-box">
+                    <p class="subscription-desc">
+                        订阅个性化图书推荐，我们将根据你的兴趣标签，每周推送精选书单和新书资讯
+                    </p>
+                    
+                    <div class="interest-tags">
+                        <label>
+                            <input type="checkbox" name="interest" value="文学小说"> 文学
+                        </label>
+                        <label>
+                            <input type="checkbox" name="interest" value="历史传记"> 历史
+                        </label>
+                        <label>
+                            <input type="checkbox" name="interest" value="社会科学"> 社科
+                        </label>
+                        <label>
+                            <input type="checkbox" name="interest" value="自然科学"> 科学
+                        </label>
+                        <label>
+                            <input type="checkbox" name="interest" value="哲学宗教"> 哲学
+                        </label>
+                        <label>
+                            <input type="checkbox" name="interest" value="科幻奇幻"> 科幻
+                        </label>
+                    </div>
+                    
+                    <div class="subscribe-form">
+                        <input type="email" placeholder="你的邮箱" required>
+                        <button class="subscribe-btn">订阅</button>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <div class="sidebar-widget subscribe">
+                <h3 class="subscribe-title">获取更多优惠</h3>
+                <p class="subscribe-desc">
+                    订阅我们的通讯，及时获取最新图书资讯和独家优惠
+                </p>
+                <form class="subscribe-form">
+                    <input type="email" placeholder="请输入邮箱">
+                    <button class="subscribe-btn">订阅</button>
+                </form>
+            </div>
+        </aside>
+    </div>
+    
+   
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span>用户登录</span>
+                <button class="close-modal" id="closeLoginModal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="username">用户名/邮箱</label>
+                        <input type="text" id="username" class="form-control" placeholder="请输入用户名或邮箱" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">密码</label>
+                        <input type="password" id="password" class="form-control" placeholder="请输入密码" required>
+                    </div>
+                    <div class="remember-me">
+                        <input type="checkbox" id="rememberMe">
+                        <label for="rememberMe">记住我</label>
+                    </div>
+                    <button type="button" class="btn-login" id="submitLogin">登录</button>
+                    <div class="register-link">
+                        还没有账号？<a href="#" id="registerLink">立即注册</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+   
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span>用户注册</span>
+                <button class="close-modal" id="closeRegisterModal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="regUsername">用户名</label>
+                        <input type="text" id="regUsername" class="form-control" placeholder="请设置用户名" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="regEmail">邮箱</label>
+                        <input type="email" id="regEmail" class="form-control" placeholder="请输入邮箱" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="regPassword">密码</label>
+                        <input type="password" id="regPassword" class="form-control" placeholder="请设置密码" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="regConfirmPassword">确认密码</label>
+                        <input type="password" id="regConfirmPassword" class="form-control" placeholder="请再次输入密码" required>
+                    </div>
+                    <button type="button" class="btn-login" id="submitRegister">注册</button>
+                    <div class="register-link">
+                        已有账号？<a href="#" id="backToLogin">返回登录</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+  
+   
+    <div class="img-preview" id="imgPreview">
+        <button class="close-preview" id="closePreview"><i class="fas fa-times"></i></button>
+        <img src="" class="preview-img" id="previewImg">
+    </div>
+
+   
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>关于我们</h3>
+                <ul>
+                    <li><a href="#"><i class="fas fa-angle-right"></i> 书店简介</a></li>
+                    <li><a href="#"><i class="fas fa-angle-right"></i> 联系我们</a></li>
+                    <li><a href="#"><i class="fas fa-angle-right"></i> 加入我们</a></li>
+                    <li><a href="#"><i class="fas fa-angle-right"></i> 隐私政策</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>客户服务</h3>
+                <ul>
+                    <li><a href="#"><i class="fas fa-angle-right"></i> 购书指南</a></li>
+                    <li><a href="#"><i class="fas fa-angle-right"></i> 配送方式</a></li>
+                    <li><a href="#"><i class="fas fa-angle-right"></i> 退换政策</a></li>
+                    <li><a href="#"><i class="fas fa-angle-right"></i> 常见问题</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>关注我们</h3>
+                <ul>
+                    <li><a href="#"><i class="fab fa-weixin"></i> 微信公众号</a></li>
+                    <li><a href="#"><i class="fab fa-weibo"></i> 微博</a></li>
+                    <li><a href="#"><i class="fab fa-tiktok"></i> 抖音</a></li>
+                    <li><a href="#"><i class="fas fa-book"></i> 小红书</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>联系方式</h3>
+                <ul>
+                    <li><i class="fas fa-phone"></i> 电话：666</li>
+                    <li><i class="fas fa-envelope"></i> 邮箱：ludong</li>
+                    <li><i class="fas fa-map-marker-alt"></i> 地址：北10</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2023 好想来书店 - 版权所有
+        </div>
+    </footer>
+
+    <script>
+        $(document).ready(function() {
+         
+            const $loginModal = $('#loginModal');
+            const $registerModal = $('#registerModal');
+            
+         
+            $('#loginLink').click(function(e) {
+                e.preventDefault();
+                $loginModal.show().css('display', 'flex');
+                $('body').css('overflow', 'hidden');
+            });
+            
+       
+            $('#closeLoginModal').click(function() {
+                $loginModal.hide();
+                $('body').css('overflow', 'auto');
+            });
+            
+            $('#registerLink').click(function(e) {
+                e.preventDefault();
+                $loginModal.hide();
+                $registerModal.show().css('display', 'flex');
+            });
+            
+            
+            $('#closeRegisterModal').click(function() {
+                $registerModal.hide();
+                $('body').css('overflow', 'auto');
+            });
+            
+            
+            $('#backToLogin').click(function(e) {
+                e.preventDefault();
+                $registerModal.hide();
+                $loginModal.show().css('display', 'flex');
+            });
+            
+          
+            $('.modal').click(function(e) {
+                if (e.target === this) {
+                    $(this).hide();
+                    $('body').css('overflow', 'auto');
+                }
+            });
+            
+         
+            $('#submitLogin').click(function() {
+                const username = $('#username').val();
+                const password = $('#password').val();
+                
+                if (!username || !password) {
+                    alert('请输入用户名和密码');
+                    return;
+                }
+                
+              
+                alert('登录成功！');
+                $loginModal.hide();
+                $('body').css('overflow', 'auto');
+            });
+            
+          
+            $('#submitRegister').click(function() {
+                const username = $('#regUsername').val();
+                const email = $('#regEmail').val();
+                const password = $('#regPassword').val();
+                const confirmPassword = $('#regConfirmPassword').val();
+                
+                if (!username || !email || !password || !confirmPassword) {
+                    alert('请填写所有必填字段');
+                    return;
+                }
+                
+                if (password !== confirmPassword) {
+                    alert('两次输入的密码不一致');
+                    return;
+                }
+                
+            
+                alert('注册成功！请登录');
+                $registerModal.hide();
+                $loginModal.show().css('display', 'flex');
+            });
+          
+           
+            $('.category-item').click(function() {
+                $('.category-item').removeClass('active');
+                $(this).addClass('active');
+            });
+
+           
+            const $imgPreview = $('#imgPreview');
+            const $previewImg = $('#previewImg');
+            
+            $('.book-img, .quick-view').click(function(e) {
+                e.stopPropagation();
+                const imgSrc = $(this).closest('.book-card').find('.book-img').data('img');
+                $previewImg.attr('src', imgSrc);
+                $imgPreview.show().css('display', 'flex');
+                $('body').css('overflow', 'hidden');
+            });
+            
+            $('#closePreview, #imgPreview').click(function(e) {
+                if (e.target === this) {
+                    $imgPreview.hide();
+                    $('body').css('overflow', 'auto');
+                }
+            });
+
+          
+            $('.add-cart').click(function() {
+                const $btn = $(this);
+                const originalText = $btn.html();
+                
+                $btn.html('<i class="fas fa-check"></i> 已加入');
+                $btn.css('background-color', '#27ae60');
+                
+                setTimeout(() => {
+                    $btn.html(originalText);
+                    $btn.css('background-color', '');
+                }, 1500);
+            });
+
+         
+            $('.subscribe-btn').click(function() {
+                const $btn = $(this);
+                const originalText = $btn.text();
+                const $emailInput = $(this).closest('.subscribe-form').find('input[type="email"]');
+                
+              
+                const isEmailValid = $emailInput.val().includes('@');
+                
+                if (isEmailValid) {
+                    $btn.text('成功');
+                    $btn.css('background-color', '#27ae60');
+                    
+                    setTimeout(() => {
+                        $btn.text(originalText);
+                        $btn.css('background-color', '');
+                        $emailInput.val('');
+                    }, 2000);
+                } else {
+                    alert('请输入有效的邮箱地址');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
