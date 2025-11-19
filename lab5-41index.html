@@ -48,8 +48,8 @@
             margin-right: 30px;
             color: white;
             text-decoration: none;
+           
         }
-
         .search-container {
             flex-grow: 1;
             max-width: 600px;
@@ -59,6 +59,7 @@
         .search-input {
             width: 100%;
             padding: 8px 15px 8px 40px;
+            
             border-radius: 20px;
             border: none;
             outline: none;
@@ -957,18 +958,23 @@
         button:active {
             transform: scale(0.95);
         }
+
+        .sb{
+            margin-left: 25px;
+        }
     </style>
 </head>
 <body>
    
     <nav class="top-nav">
+        
         <a href="#" class="logo">好想来书店</a>
         <div class="search-container">
             <i class="fas fa-search search-icon"></i>
             <input type="text" class="search-input" placeholder="搜索图书、作者、ISBN...">
         </div>
         <div class="user-actions">
-            <a href="#"><i class="fas fa-home"></i> <span>首页</span></a>
+            <a href="#"><i class="fas fa-home sb"></i> <span>首页</span></a>
             <a href="#"><i class="fas fa-tag"></i> <span>优惠</span></a>
             <a href="#"><i class="fas fa-shopping-cart"></i> <span>购物车</span></a>
             <a href="#" class="auth-link" id="loginLink"><i class="fas fa-user"></i> <span>登录/注册</span></a>
@@ -981,29 +987,30 @@
         <aside class="sidebar">
             <h3 class="sidebar-title">图书分类</h3>
             <ul class="category-list">
+                
                 <li class="category-item active">
-                    全部图书 <span class="category-count">256</span>
+                    全部图书 <i class="fas fa-book" style="margin-left: 8px;"></i> <span class="category-count">256</span>
                 </li>
                 <li class="category-item">
-                    文学小说 <span class="category-count">87</span>
+                    文学小说 <i class="fas fa-pen-fancy" style="margin-left: 8px;"></i><span class="category-count">87</span>
                 </li>
                 <li class="category-item">
-                    历史传记 <span class="category-count">42</span>
+                    历史传记 <i class="fas fa-history" style="margin-left: 8px;"></i><span class="category-count">42</span>
                 </li>
                 <li class="category-item">
-                    社会科学 <span class="category-count">36</span>
+                    社会科学 <i class="fas fa-users" style="margin-left: 8px;"></i><span class="category-count">36</span>
                 </li>
                 <li class="category-item">
-                    自然科学 <span class="category-count">29</span>
+                    自然科学 <i class="fas fa-flask" style="margin-left: 8px;"></i><span class="category-count">29</span>
                 </li>
                 <li class="category-item">
-                    哲学宗教 <span class="category-count">18</span>
+                    哲学宗教 <i class="fas fa-brain" style="margin-left: 8px;"></i><span class="category-count">18</span>
                 </li>
                 <li class="category-item">
-                    艺术设计 <span class="category-count">21</span>
+                    艺术设计 <i class="fas fa-palette" style="margin-left: 8px;"></i><span class="category-count">21</span>
                 </li>
                 <li class="category-item">
-                    科幻奇幻 <span class="category-count">15</span>
+                    科幻奇幻 <i class="fas fa-rocket" style="margin-left: 8px;"></i><span class="category-count">15</span>
                 </li>
             </ul>
         </aside>
