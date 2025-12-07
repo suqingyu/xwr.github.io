@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>好想来书店</title>
-   
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
@@ -26,7 +27,7 @@
             padding-top: 60px;
         }
 
-     
+
         .top-nav {
             background-color: #2c3e50;
             color: white;
@@ -36,7 +37,7 @@
             left: 0;
             right: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             display: flex;
             align-items: center;
             padding: 0 20px;
@@ -48,8 +49,9 @@
             margin-right: 30px;
             color: white;
             text-decoration: none;
-           
+
         }
+
         .search-container {
             flex-grow: 1;
             max-width: 600px;
@@ -59,7 +61,7 @@
         .search-input {
             width: 100%;
             padding: 8px 15px 8px 40px;
-            
+
             border-radius: 20px;
             border: none;
             outline: none;
@@ -91,7 +93,7 @@
 
         .user-actions a:hover {
             color: #3498db;
-            
+
         }
 
         .auth-link {
@@ -103,15 +105,13 @@
 
         .auth-link:hover {
             background-color: #3498db;
-            color: white ;
+            color: white;
             transform: scale(1.2);
-            background-image: linear-gradient(
-                white,
-                #3498db
-            );
+            background-image: linear-gradient(white,
+                    #3498db);
         }
 
-      
+
         .main-container {
             display: flex;
             max-width: 1400px;
@@ -120,12 +120,12 @@
             gap: 20px;
         }
 
-       
+
         .sidebar {
             width: 240px;
             background-color: white;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             padding: 20px 0;
             flex-shrink: 0;
         }
@@ -170,7 +170,7 @@
             border-radius: 10px;
         }
 
-        
+
         .content-area {
             flex-grow: 1;
             display: flex;
@@ -182,7 +182,7 @@
             background-color: white;
             padding: 15px 20px;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             display: flex;
             flex-wrap: wrap;
             gap: 15px;
@@ -241,7 +241,7 @@
         .section {
             background-color: white;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             padding: 20px;
         }
 
@@ -265,7 +265,7 @@
             font-size: 0.9rem;
         }
 
-        
+
         .books-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -275,7 +275,7 @@
         .book-card {
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
             transition: transform 0.3s;
             position: relative;
         }
@@ -326,7 +326,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.7); 
+            background-color: rgba(0, 0, 0, 0.7);
             opacity: 0;
             transition: opacity 0.3s;
             display: flex;
@@ -355,7 +355,7 @@
             margin-bottom: 10px;
             line-height: 1.5;
             display: -webkit-box;
-            -webkit-line-clamp: 3;
+            line-clamp: 3;
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
@@ -400,7 +400,7 @@
             color: #666;
             margin-bottom: 8px;
             display: -webkit-box;
-            -webkit-line-clamp: 1;
+            line-clamp: 1;
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
@@ -432,7 +432,7 @@
             background-color: #2980b9;
         }
 
-      
+
         .right-sidebar {
             width: 280px;
             display: flex;
@@ -444,7 +444,7 @@
         .sidebar-widget {
             background-color: white;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             padding: 20px;
         }
 
@@ -537,7 +537,7 @@
             line-height: 1.5;
         }
 
-      
+
         .subscribe {
             background-color: #f0f7ff;
             padding: 25px;
@@ -586,7 +586,7 @@
             background-color: #2980b9;
         }
 
-       
+
         .subscription-box {
             background-color: #f9f9f9;
             border-radius: 6px;
@@ -660,7 +660,7 @@
         }
 
         .footer-col a {
-            color: rgba(255,255,255,0.8);
+            color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
             transition: color 0.3s;
             font-size: 0.9rem;
@@ -682,19 +682,19 @@
             text-align: center;
             padding-top: 20px;
             margin-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             font-size: 0.85rem;
-            color: rgba(255,255,255,0.6);
+            color: rgba(255, 255, 255, 0.6);
         }
 
-        
+
         .modal {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.5);
+            background-color: rgba(0, 0, 0, 0.5);
             display: none;
             justify-content: center;
             align-items: center;
@@ -707,7 +707,7 @@
             border-radius: 8px;
             width: 100%;
             max-width: 400px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
             overflow: hidden;
         }
 
@@ -802,14 +802,14 @@
             text-decoration: underline;
         }
 
-      
+
         .img-preview {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.8);
+            background-color: rgba(0, 0, 0, 0.8);
             display: none;
             justify-content: center;
             align-items: center;
@@ -836,12 +836,12 @@
             cursor: pointer;
         }
 
-      
+
         @media (max-width: 1200px) {
             .right-sidebar {
                 width: 240px;
             }
-            
+
             .books-grid {
                 grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
             }
@@ -851,36 +851,36 @@
             .main-container {
                 flex-direction: column;
             }
-            
+
             .sidebar {
                 width: 100%;
                 padding: 15px 0;
             }
-            
+
             .category-list {
                 display: flex;
                 overflow-x: auto;
                 padding: 5px 0;
             }
-            
+
             .category-item {
                 flex-shrink: 0;
                 padding: 8px 15px;
                 margin: 0 5px;
                 border-radius: 15px;
             }
-            
+
             .right-sidebar {
                 width: 100%;
                 flex-direction: row;
                 overflow-x: auto;
                 padding-bottom: 10px;
             }
-            
+
             .sidebar-widget {
                 min-width: 280px;
             }
-            
+
             .books-grid {
                 grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             }
@@ -891,29 +891,29 @@
                 max-width: none;
                 margin: 0 10px;
             }
-            
+
             .user-actions span {
                 display: none;
             }
-            
+
             .user-actions {
                 gap: 15px;
             }
-            
+
             .filter-actions {
                 margin-left: 0;
                 width: 100%;
                 margin-top: 10px;
             }
-            
+
             .filter-btn {
                 flex-grow: 1;
             }
-            
+
             .books-grid {
                 grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
             }
-            
+
             .book-img {
                 height: 220px;
             }
@@ -924,25 +924,26 @@
                 font-size: 1.2rem;
                 margin-right: 10px;
             }
-            
+
             .books-grid {
                 grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
             }
-            
-            .book-title, .book-price {
+
+            .book-title,
+            .book-price {
                 font-size: 0.9rem;
             }
-            
+
             .section-title {
                 font-size: 1.1rem;
             }
-            
+
             .footer-col {
                 min-width: 100%;
             }
         }
 
-       
+
         .announcement {
             animation: fadeIn 0.8s ease-in-out;
         }
@@ -952,6 +953,7 @@
                 opacity: 0;
                 transform: translateY(-20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -966,56 +968,105 @@
             transform: scale(0.95);
         }
 
-        .sb{
+        .sb {
             margin-left: 25px;
         }
+
         div a {
             transform-origin: 0px auto;
             transition: all 1s;
         }
-        div  a:hover:nth-child(3){
+
+        div a:hover:nth-child(3) {
             transform: rotate(360deg);
         }
-        .l{
-        width: 1120px;
-        height: 250px;
-        background-color: pink;
-        margin: 0 auto;
-        overflow: hidden;
-        border: 5px solid rgb(29, 149, 193);
-    }
-    div ul img{
-        width: 224px;
-        height: 250px;
-        display: block;
-        
-    }
 
-    .l ul{
-        display: flex;
-        text-decoration: none;
-        animation: move 12s linear infinite;
-        list-style: none;
-    }
-    @keyframes move{
-        from{
-            transform: translate(0);
-        }
-        to{
-            transform: translate(-1344px);
+        .vv {
+            width: 800px;
+            height: 400px;
+            overflow: hidden;
+            margin: 0 auto;
         }
 
-    }
-    .l ul:hover{
-        animation-play-state: paused;
-    }
-    
+        .rr {
+            width: 100%;
+            height: 320px;
+        }
+
+        .rr img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .ll {
+            height: 80px;
+            background-color: rgb(100, 67, 68);
+            padding: 12px 12px 0 12px;
+            position: relative;
+        }
+
+        .ll .mm {
+            position: absolute;
+            right: 0;
+            top: 12px;
+            display: flex;
+        }
+
+        .ll .mm button {
+            margin-right: 12px;
+            width: 28px;
+            height: 28px;
+            appearance: none;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .ll .mm button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .ll p {
+            margin: 0;
+            margin-bottom: 10px;
+            font-size: 18px;
+            color: #fff;
+        }
+
+        .bb {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .bb li {
+            width: 8px;
+            height: 8px;
+            margin: 4px;
+            border-radius: 50%;
+            background: #fff;
+            opacity: 0.4;
+            cursor: pointer;
+        }
+
+        .bb .active {
+            width: 12px;
+            height: 12px;
+            opacity: 1;
+        }
     </style>
 </head>
+
 <body>
 
     <nav class="top-nav">
-        
+
         <a href="#" class="logo">好想来书店</a>
         <div class="search-container">
             <i class="fas fa-search search-icon"></i>
@@ -1028,35 +1079,38 @@
             <a href="#" class="auth-link" id="loginLink"><i class="fas fa-user"></i> <span>登录/注册</span></a>
         </div>
     </nav>
-    <div>
-        <div class="l">
-            <ul>
-                <li> <a href="#"><img src="https://pic3.zhimg.com/v2-93e601814b76ecf086fb916db052c345_r.jpg?source=1940ef5c" alt=""></a></li>
-                <li> <a href="#"><img src="https://ts2.tc.mm.bing.net/th/id/OIP-C.lh70yI9jNz-gMHd1yUiSjwHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" alt=""></a></li>
-                <li> <a href="#"><img src="https://ts4.tc.mm.bing.net/th/id/OIP-C.C-cSNIvxjR_8Wr2Jan8-zgHaKe?rs=1&pid=ImgDetMain&o=7&rm=3" alt=""></a></li>
-                <li> <a href="#"><img src="https://ts3.tc.mm.bing.net/th/id/OIP-C.hbhp5osj1nw8UBDvXCtTBQHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" alt=""></a></li>
-                <li> <a href="#"><img src="https://ts1.tc.mm.bing.net/th/id/OIP-C.ss4dBQHYUYVf5ox49QwN9AHaGq?rs=1&pid=ImgDetMain&o=7&rm=3" alt=""></a></li>
-                <li> <a href="#"><img src="https://ts3.tc.mm.bing.net/th/id/OIP-C.1vjMwzXHsyA7h4tx1UQujQHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" alt=""></a></li>
-                <li> <a href="#"><img src="https://pic3.zhimg.com/v2-93e601814b76ecf086fb916db052c345_r.jpg?source=1940ef5c" alt=""></a></li>
-                <li> <a href="#"><img src="https://ts2.tc.mm.bing.net/th/id/OIP-C.lh70yI9jNz-gMHd1yUiSjwHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" alt=""></a></li>
-                <li> <a href="#"><img src="https://ts4.tc.mm.bing.net/th/id/OIP-C.C-cSNIvxjR_8Wr2Jan8-zgHaKe?rs=1&pid=ImgDetMain&o=7&rm=3" alt=""></a></li>
-                <li> <a href="#"><img src="https://ts3.tc.mm.bing.net/th/id/OIP-C.hbhp5osj1nw8UBDvXCtTBQHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" alt=""></a></li>
-                <li> <a href="#"><img src="https://ts1.tc.mm.bing.net/th/id/OIP-C.ss4dBQHYUYVf5ox49QwN9AHaGq?rs=1&pid=ImgDetMain&o=7&rm=3" alt=""></a></li>
-            </ul>           
+    <div class="vv">
+        <div class="rr">
+            <img src="../image/1.png" alt="">
+        </div>
+        <div class="ll">
+            <p>学无止境，以梦为马</p>
+            <ul class="bb">
+                <li class="active"> </li>
+                <li> </li>
+                <li> </li>
+                <li> </li>
+            </ul>
+            <div class="mm">
+                <button class="prey">&lt;</button>
+                <button class="next">&gt;</button>
+            </div>
         </div>
     </div>
-   
+
+
     <div class="main-container">
-       
+
         <aside class="sidebar">
             <h3 class="sidebar-title">图书分类</h3>
             <ul class="category-list">
-                
+
                 <li class="category-item active">
                     全部图书 <i class="fas fa-book" style="margin-left: 8px;"></i> <span class="category-count">256</span>
                 </li>
                 <li class="category-item">
-                    文学小说 <i class="fas fa-pen-fancy" style="margin-left: 8px;"></i><span class="category-count">87</span>
+                    文学小说 <i class="fas fa-pen-fancy" style="margin-left: 8px;"></i><span
+                        class="category-count">87</span>
                 </li>
                 <li class="category-item">
                     历史传记 <i class="fas fa-history" style="margin-left: 8px;"></i><span class="category-count">42</span>
@@ -1078,10 +1132,10 @@
                 </li>
             </ul>
         </aside>
-        
-        
+
+
         <main class="content-area">
-           
+
             <div class="filter-bar">
                 <div class="filter-item">
                     <span class="filter-label">价格范围:</span>
@@ -1117,8 +1171,8 @@
                     <button class="filter-btn">应用筛选</button>
                 </div>
             </div>
-            
-           
+
+
             <section class="section">
                 <div class="section-header">
                     <h2 class="section-title">新书推荐</h2>
@@ -1128,8 +1182,10 @@
                     <div class="book-card">
                         <div class="book-img-container">
                             <span class="book-tag tag-new">新书</span>
-                            <img src="https://bpic.588ku.com/templet_list_pic/25/06/24/7ddc108ba59c7c9a82e3314186de03aa.jpg" class="book-img" alt="长安的荔枝" data-img="https://bpic.588ku.com/templet_list_pic/25/06/24/7ddc108ba59c7c9a82e3314186de03aa.jpg">
-                            
+                            <img src="https://bpic.588ku.com/templet_list_pic/25/06/24/7ddc108ba59c7c9a82e3314186de03aa.jpg"
+                                class="book-img" alt="长安的荔枝"
+                                data-img="https://bpic.588ku.com/templet_list_pic/25/06/24/7ddc108ba59c7c9a82e3314186de03aa.jpg">
+
                             <div class="book-overlay">
                                 <div class="book-details">
                                     <div class="detail-desc">
@@ -1151,8 +1207,10 @@
                     <div class="book-card">
                         <div class="book-img-container">
                             <span class="book-tag tag-new">新书</span>
-                            <img src="https://img.alicdn.com/i3/288902762/O1CN01gk9tGF1WH2abIr58Q_!!288902762.jpg" class="book-img" alt="夜晚的潜水艇" data-img="https://img.alicdn.com/i3/288902762/O1CN01gk9tGF1WH2abIr58Q_!!288902762.jpg">
-                            
+                            <img src="https://img.alicdn.com/i3/288902762/O1CN01gk9tGF1WH2abIr58Q_!!288902762.jpg"
+                                class="book-img" alt="夜晚的潜水艇"
+                                data-img="https://img.alicdn.com/i3/288902762/O1CN01gk9tGF1WH2abIr58Q_!!288902762.jpg">
+
                             <div class="book-overlay">
                                 <div class="book-details">
                                     <div class="detail-desc">
@@ -1174,8 +1232,10 @@
                     <div class="book-card">
                         <div class="book-img-container">
                             <span class="book-tag tag-new">新书</span>
-                            <img src="https://pic1.zhimg.com/v2-8fc9e821555d939320aa7bb19ad464fb_720w.jpg?source=172ae18b" class="book-img" alt="置身事内" data-img="https://pic1.zhimg.com/v2-8fc9e821555d939320aa7bb19ad464fb_720w.jpg?source=172ae18b">
-                            
+                            <img src="https://pic1.zhimg.com/v2-8fc9e821555d939320aa7bb19ad464fb_720w.jpg?source=172ae18b"
+                                class="book-img" alt="置身事内"
+                                data-img="https://pic1.zhimg.com/v2-8fc9e821555d939320aa7bb19ad464fb_720w.jpg?source=172ae18b">
+
                             <div class="book-overlay">
                                 <div class="book-details">
                                     <div class="detail-desc">
@@ -1194,10 +1254,10 @@
                         </div>
                     </div>
 
-                   
+
             </section>
-            
-          
+
+
             <section class="section">
                 <div class="section-header">
                     <h2 class="section-title">畅销精选</h2>
@@ -1207,8 +1267,10 @@
                     <div class="book-card">
                         <div class="book-img-container">
                             <span class="book-tag tag-hot">畅销</span>
-                            <img src="https://ts1.tc.mm.bing.net/th/id/R-C.0aa9e68a40597fbf47ed9aaaeb7a374d?rik=gJ871Rvx7S14uA&riu=http%3a%2f%2fpic.baike.soso.com%2fugc%2fbaikepic2%2f1339%2f20160114134110-257691148.jpg%2f0&ehk=cpOFO9WIId2rZ%2fQCy2Y6HtugMu1xM%2fYV%2b7Itq6%2fKz%2bM%3d&risl=&pid=ImgRaw&r=0" class="book-img" alt="三体" data-img="https://ts1.tc.mm.bing.net/th/id/R-C.0aa9e68a40597fbf47ed9aaaeb7a374d?rik=gJ871Rvx7S14uA&riu=http%3a%2f%2fpic.baike.soso.com%2fugc%2fbaikepic2%2f1339%2f20160114134110-257691148.jpg%2f0&ehk=cpOFO9WIId2rZ%2fQCy2Y6HtugMu1xM%2fYV%2b7Itq6%2fKz%2bM%3d&risl=&pid=ImgRaw&r=0">
-                            
+                            <img src="https://ts1.tc.mm.bing.net/th/id/R-C.0aa9e68a40597fbf47ed9aaaeb7a374d?rik=gJ871Rvx7S14uA&riu=http%3a%2f%2fpic.baike.soso.com%2fugc%2fbaikepic2%2f1339%2f20160114134110-257691148.jpg%2f0&ehk=cpOFO9WIId2rZ%2fQCy2Y6HtugMu1xM%2fYV%2b7Itq6%2fKz%2bM%3d&risl=&pid=ImgRaw&r=0"
+                                class="book-img" alt="三体"
+                                data-img="https://ts1.tc.mm.bing.net/th/id/R-C.0aa9e68a40597fbf47ed9aaaeb7a374d?rik=gJ871Rvx7S14uA&riu=http%3a%2f%2fpic.baike.soso.com%2fugc%2fbaikepic2%2f1339%2f20160114134110-257691148.jpg%2f0&ehk=cpOFO9WIId2rZ%2fQCy2Y6HtugMu1xM%2fYV%2b7Itq6%2fKz%2bM%3d&risl=&pid=ImgRaw&r=0">
+
                             <div class="book-overlay">
                                 <div class="book-details">
                                     <div class="detail-desc">
@@ -1230,8 +1292,10 @@
                     <div class="book-card">
                         <div class="book-img-container">
                             <span class="book-tag tag-hot">畅销</span>
-                            <img src="https://img.alicdn.com/i3/101450072/O1CN01JXSrRS1CP1HcgQpqL-101450072.jpg" class="book-img" alt="百年孤独" data-img="https://img.alicdn.com/i3/101450072/O1CN01JXSrRS1CP1HcgQpqL-101450072.jpg">
-                            
+                            <img src="https://img.alicdn.com/i3/101450072/O1CN01JXSrRS1CP1HcgQpqL-101450072.jpg"
+                                class="book-img" alt="百年孤独"
+                                data-img="https://img.alicdn.com/i3/101450072/O1CN01JXSrRS1CP1HcgQpqL-101450072.jpg">
+
                             <div class="book-overlay">
                                 <div class="book-details">
                                     <div class="detail-desc">
@@ -1253,8 +1317,10 @@
                     <div class="book-card">
                         <div class="book-img-container">
                             <span class="book-tag tag-hot">畅销</span>
-                            <img src="https://img14.360buyimg.com/pop/jfs/t1/202390/35/17788/414539/61b1d057E5f58c1db/ed08fade1834dffd.png" class="book-img" alt="活着" data-img="https://img2.doubanio.com/view/subject/s/public/s29437474.jpg">
-                            
+                            <img src="https://img14.360buyimg.com/pop/jfs/t1/202390/35/17788/414539/61b1d057E5f58c1db/ed08fade1834dffd.png"
+                                class="book-img" alt="活着"
+                                data-img="https://img2.doubanio.com/view/subject/s/public/s29437474.jpg">
+
                             <div class="book-overlay">
                                 <div class="book-details">
                                     <div class="detail-desc">
@@ -1273,27 +1339,28 @@
                         </div>
                     </div>
 
-                    
+
             </section>
         </main>
-        
-        
+
+
         <aside class="right-sidebar">
-          
+
             <div class="sidebar-widget announcement">
                 <h3 class="announcement-title"><i class="fas fa-bullhorn"></i> 会员专享</h3>
                 <div class="announcement-content">
                     本月购买任意图书满200元立减50元，新用户注册即送10元无门槛券，更有精选图书限时7折优惠！
                 </div>
             </div>
-            
-       
+
+
             <div class="sidebar-widget">
                 <h3 class="widget-title">热门排行</h3>
                 <div class="hot-books-list">
                     <div class="hot-book">
                         <div class="hot-rank top3">1</div>
-                        <img src="https://ts1.tc.mm.bing.net/th/id/R-C.0aa9e68a40597fbf47ed9aaaeb7a374d?rik=gJ871Rvx7S14uA&riu=http%3a%2f%2fpic.baike.soso.com%2fugc%2fbaikepic2%2f1339%2f20160114134110-257691148.jpg%2f0&ehk=cpOFO9WIId2rZ%2fQCy2Y6HtugMu1xM%2fYV%2b7Itq6%2fKz%2bM%3d&risl=&pid=ImgRaw&r=0" class="hot-book-img" alt="三体">
+                        <img src="https://ts1.tc.mm.bing.net/th/id/R-C.0aa9e68a40597fbf47ed9aaaeb7a374d?rik=gJ871Rvx7S14uA&riu=http%3a%2f%2fpic.baike.soso.com%2fugc%2fbaikepic2%2f1339%2f20160114134110-257691148.jpg%2f0&ehk=cpOFO9WIId2rZ%2fQCy2Y6HtugMu1xM%2fYV%2b7Itq6%2fKz%2bM%3d&risl=&pid=ImgRaw&r=0"
+                            class="hot-book-img" alt="三体">
                         <div class="hot-book-info">
                             <div class="hot-book-title">三体</div>
                             <div class="hot-book-author">刘慈欣 著</div>
@@ -1302,7 +1369,8 @@
                     </div>
                     <div class="hot-book">
                         <div class="hot-rank top3">2</div>
-                        <img src="https://img.alicdn.com/i3/101450072/O1CN01JXSrRS1CP1HcgQpqL-101450072.jpg" class="hot-book-img" alt="百年孤独">
+                        <img src="https://img.alicdn.com/i3/101450072/O1CN01JXSrRS1CP1HcgQpqL-101450072.jpg"
+                            class="hot-book-img" alt="百年孤独">
                         <div class="hot-book-info">
                             <div class="hot-book-title">百年孤独</div>
                             <div class="hot-book-author">加西亚·马尔克斯</div>
@@ -1311,7 +1379,8 @@
                     </div>
                     <div class="hot-book">
                         <div class="hot-rank top3">3</div>
-                        <img src="https://bpic.588ku.com/templet_list_pic/25/06/24/7ddc108ba59c7c9a82e3314186de03aa.jpg" class="hot-book-img" alt="长安的荔枝">
+                        <img src="https://bpic.588ku.com/templet_list_pic/25/06/24/7ddc108ba59c7c9a82e3314186de03aa.jpg"
+                            class="hot-book-img" alt="长安的荔枝">
                         <div class="hot-book-info">
                             <div class="hot-book-title">长安的荔枝</div>
                             <div class="hot-book-author">马伯庸 著</div>
@@ -1320,7 +1389,8 @@
                     </div>
                     <div class="hot-book">
                         <div class="hot-rank">4</div>
-                        <img src="https://img14.360buyimg.com/pop/jfs/t1/202390/35/17788/414539/61b1d057E5f58c1db/ed08fade1834dffd.png" class="hot-book-img" alt="活着">
+                        <img src="https://img14.360buyimg.com/pop/jfs/t1/202390/35/17788/414539/61b1d057E5f58c1db/ed08fade1834dffd.png"
+                            class="hot-book-img" alt="活着">
                         <div class="hot-book-info">
                             <div class="hot-book-title">活着</div>
                             <div class="hot-book-author">余华 著</div>
@@ -1329,7 +1399,8 @@
                     </div>
                     <div class="hot-book">
                         <div class="hot-rank">5</div>
-                        <img src="https://img.alicdn.com/i3/288902762/O1CN01gk9tGF1WH2abIr58Q_!!288902762.jpg" class="hot-book-img" alt="夜晚的潜水艇">
+                        <img src="https://img.alicdn.com/i3/288902762/O1CN01gk9tGF1WH2abIr58Q_!!288902762.jpg"
+                            class="hot-book-img" alt="夜晚的潜水艇">
                         <div class="hot-book-info">
                             <div class="hot-book-title">夜晚的潜水艇</div>
                             <div class="hot-book-author">陈春成 著</div>
@@ -1338,15 +1409,15 @@
                     </div>
                 </div>
             </div>
-            
-         
+
+
             <div class="sidebar-widget">
                 <h3 class="widget-title">图书推荐订阅</h3>
                 <div class="subscription-box">
                     <p class="subscription-desc">
                         订阅个性化图书推荐，我们将根据你的兴趣标签，每周推送精选书单和新书资讯
                     </p>
-                    
+
                     <div class="interest-tags">
                         <label>
                             <input type="checkbox" name="interest" value="文学小说"> 文学
@@ -1367,15 +1438,15 @@
                             <input type="checkbox" name="interest" value="科幻奇幻"> 科幻
                         </label>
                     </div>
-                    
+
                     <div class="subscribe-form">
                         <input type="email" placeholder="你的邮箱" required>
                         <button class="subscribe-btn">订阅</button>
                     </div>
                 </div>
             </div>
-            
-            
+
+
             <div class="sidebar-widget subscribe">
                 <h3 class="subscribe-title">获取更多优惠</h3>
                 <p class="subscribe-desc">
@@ -1388,8 +1459,8 @@
             </div>
         </aside>
     </div>
-    
-   
+
+
     <div class="modal" id="loginModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -1419,7 +1490,7 @@
         </div>
     </div>
 
-   
+
     <div class="modal" id="registerModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -1442,7 +1513,8 @@
                     </div>
                     <div class="form-group">
                         <label for="regConfirmPassword">确认密码</label>
-                        <input type="password" id="regConfirmPassword" class="form-control" placeholder="请再次输入密码" required>
+                        <input type="password" id="regConfirmPassword" class="form-control" placeholder="请再次输入密码"
+                            required>
                     </div>
                     <button type="button" class="btn-login" id="submitRegister">注册</button>
                     <div class="register-link">
@@ -1452,14 +1524,14 @@
             </div>
         </div>
     </div>
-  
-   
+
+
     <div class="img-preview" id="imgPreview">
         <button class="close-preview" id="closePreview"><i class="fas fa-times"></i></button>
         <img src="" class="preview-img" id="previewImg">
     </div>
 
-   
+
     <footer>
         <div class="footer-container">
             <div class="footer-col">
@@ -1504,142 +1576,142 @@
     </footer>
 
     <script>
-        $(document).ready(function() {
-         
+        $(document).ready(function () {
+
             const $loginModal = $('#loginModal');
             const $registerModal = $('#registerModal');
-            
-         
-            $('#loginLink').click(function(e) {
+
+
+            $('#loginLink').click(function (e) {
                 e.preventDefault();
                 $loginModal.show().css('display', 'flex');
                 $('body').css('overflow', 'hidden');
             });
-            
-       
-            $('#closeLoginModal').click(function() {
+
+
+            $('#closeLoginModal').click(function () {
                 $loginModal.hide();
                 $('body').css('overflow', 'auto');
             });
-            
-            $('#registerLink').click(function(e) {
+
+            $('#registerLink').click(function (e) {
                 e.preventDefault();
                 $loginModal.hide();
                 $registerModal.show().css('display', 'flex');
             });
-            
-            
-            $('#closeRegisterModal').click(function() {
+
+
+            $('#closeRegisterModal').click(function () {
                 $registerModal.hide();
                 $('body').css('overflow', 'auto');
             });
-            
-            
-            $('#backToLogin').click(function(e) {
+
+
+            $('#backToLogin').click(function (e) {
                 e.preventDefault();
                 $registerModal.hide();
                 $loginModal.show().css('display', 'flex');
             });
-            
-          
-            $('.modal').click(function(e) {
+
+
+            $('.modal').click(function (e) {
                 if (e.target === this) {
                     $(this).hide();
                     $('body').css('overflow', 'auto');
                 }
             });
-            
-         
-            $('#submitLogin').click(function() {
+
+
+            $('#submitLogin').click(function () {
                 const username = $('#username').val();
                 const password = $('#password').val();
-                
+
                 if (!username || !password) {
                     alert('请输入用户名和密码');
                     return;
                 }
-                
-              
+
+
                 alert('登录成功！');
                 $loginModal.hide();
                 $('body').css('overflow', 'auto');
             });
-            
-          
-            $('#submitRegister').click(function() {
+
+
+            $('#submitRegister').click(function () {
                 const username = $('#regUsername').val();
                 const email = $('#regEmail').val();
                 const password = $('#regPassword').val();
                 const confirmPassword = $('#regConfirmPassword').val();
-                
+
                 if (!username || !email || !password || !confirmPassword) {
                     alert('请填写所有必填字段');
                     return;
                 }
-                
+
                 if (password !== confirmPassword) {
                     alert('两次输入的密码不一致');
                     return;
                 }
-                
-            
+
+
                 alert('注册成功！请登录');
                 $registerModal.hide();
                 $loginModal.show().css('display', 'flex');
             });
-          
-           
-            $('.category-item').click(function() {
+
+
+            $('.category-item').click(function () {
                 $('.category-item').removeClass('active');
                 $(this).addClass('active');
             });
 
-           
+
             const $imgPreview = $('#imgPreview');
             const $previewImg = $('#previewImg');
-            
-            $('.book-img, .quick-view').click(function(e) {
+
+            $('.book-img, .quick-view').click(function (e) {
                 e.stopPropagation();
                 const imgSrc = $(this).closest('.book-card').find('.book-img').data('img');
                 $previewImg.attr('src', imgSrc);
                 $imgPreview.show().css('display', 'flex');
                 $('body').css('overflow', 'hidden');
             });
-            
-            $('#closePreview, #imgPreview').click(function(e) {
+
+            $('#closePreview, #imgPreview').click(function (e) {
                 if (e.target === this) {
                     $imgPreview.hide();
                     $('body').css('overflow', 'auto');
                 }
             });
 
-          
-            $('.add-cart').click(function() {
+
+            $('.add-cart').click(function () {
                 const $btn = $(this);
                 const originalText = $btn.html();
-                
+
                 $btn.html('<i class="fas fa-check"></i> 已加入');
                 $btn.css('background-color', '#27ae60');
-                
+
                 setTimeout(() => {
                     $btn.html(originalText);
                     $btn.css('background-color', '');
                 }, 1500);
             });
 
-         
-            $('.subscribe-btn').click(function() {
+
+            $('.subscribe-btn').click(function () {
                 const $btn = $(this);
                 const originalText = $btn.text();
                 const $emailInput = $(this).closest('.subscribe-form').find('input[type="email"]');
-                
-              
+
+
                 const isEmailValid = $emailInput.val().includes('@');
-                
+
                 if (isEmailValid) {
                     $btn.text('成功');
                     $btn.css('background-color', '#27ae60');
-                    
+
                     setTimeout(() => {
                         $btn.text(originalText);
                         $btn.css('background-color', '');
@@ -1650,6 +1722,54 @@
                 }
             });
         });
+        const dete = [
+            { url: '../image/1.png', title: '学无止境，以梦为马', color: 'rgb(85 68 67)' },
+            { url: '../image/2.png', title: '书籍是人类进步的阶梯', color: 'rgb(120 60 55)' },
+            { url: '../image/3.png', title: '美丽无处不在', color: 'rgb(32 45 33)' },
+            { url: '../image/4.png', title: '要有善于发现美丽的眼光', color: 'rgb(52 33 45)' },
+        ]
+        const color = document.querySelector('.ll')
+        const img = document.querySelector(' .rr img')
+        const p = document.querySelector(' .ll p')
+        const next = document.querySelector('.next')
+        let i = 0
+        next.addEventListener('click', function () {
+            i++
+            if (i >= 4) {
+                i = 0
+            }
+            img.src = dete[i].url
+            p.innerHTML = dete[i].title
+            color.style.backgroundColor = dete[i].color
+            document.querySelector('.bb .active').classList.remove('active')
+            document.querySelector(`.bb li:nth-child(${i + 1})`).classList.add('active')
+        })
+        const prey = document.querySelector('.prey')
+        prey.addEventListener('click', function () {
+            i--
+            if (i < 0) {
+                i = 3
+            }
+            img.src = dete[i].url
+            p.innerHTML = dete[i].title
+            color.style.backgroundColor = dete[i].color
+            document.querySelector('.bb .active').classList.remove('active')
+            document.querySelector(`.bb li:nth-child(${i + 1})`).classList.add('active')
+        })
+        //li标签是从1到4
+        let sb = setInterval(function () {
+            next.click()
+        }, 1500)
+        const vv = document.querySelector(' .vv')
+        vv.addEventListener('mouseenter', function () {
+            clearInterval(sb)
+        })
+        vv.addEventListener('mouseleave', function () {
+            sb = setInterval(function () {
+                next.click()
+            }, 1000)
+        })
     </script>
 </body>
+
 </html>
